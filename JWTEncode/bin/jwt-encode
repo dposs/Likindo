@@ -1,0 +1,21 @@
+let jwtencode = require("../");
+
+let argv = require("yargs")
+  .usage("Usage: jwt-encode -u <user-id> -s <scope> -d <device-id> -x <secret>")
+  .demand(["u"])
+  .alias("u", "user-id")
+  .alias("s", "scope")
+  .alias("d", "device-id")
+  .alias("x", "secret")
+  .describe("u", "User ID")
+  .describe("s", "Scope [likindo | mobile | parent | store]")
+  .describe("d", "Device ID")
+  .describe("x", "Secret Key")
+  .argv;
+
+let userId = argv.u;
+let scope = argv.s;
+let deviceId = argv.d;
+let secret = argv.x;
+
+jwtencode.encode(scope, userId, deviceId, secret);
